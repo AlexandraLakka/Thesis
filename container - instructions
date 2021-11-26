@@ -1,0 +1,11 @@
+Commands to run when setting up the new root file
+
+1. Run "chown -R root:root /" to make root the owner of the directory and its subfolders
+
+2. To resolve the error "sudo cannot resolve hostname" run : "cat >> /etc/hostname" and "cat >> /etc/hosts" and add the container's host name
+
+3. Create with "cat>/etc/resolv.conf" the file and then run 
+"echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf > /dev/null" [https://askubuntu.com/questions/91543/apt-get-update-fails-to-fetch-files-temporary-failure-resolving-error], 
+to gain access to Internet
+
+4. Use "ip addr show" to get ip
