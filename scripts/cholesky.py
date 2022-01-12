@@ -9,9 +9,10 @@ if __name__ == "__main__":
     start_http_server(8000)
     start_time = time.time()
 
-    #A = [lst[:] for lst in [random.sample(range(80), 6)]*6]
-    matrixSize = 1050
-    A = np.random.rand(matrixSize, matrixSize)
+    #A = [random.sample(range(-20000, 20000), 3000) for _ in range(3000)]
+    matrixSize1 = 580
+    matrixSize2 = 580
+    A = np.random.rand(matrixSize1, matrixSize2)
     B = np.dot(A, A.transpose())
     print(B)
 
