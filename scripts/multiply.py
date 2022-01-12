@@ -7,8 +7,8 @@ import random
 if __name__ == "__main__":
     start_http_server(8000)
     start_time = time.time()
-    A = [lst[:] for lst in [random.sample(range(2000), 450)]*450]
-    B = [lst[:] for lst in [random.sample(range(2000), 450)]*450]
+    A = [random.sample(range(2000), 940) for _ in range(254)]
+    B = [random.sample(range(2000), 679) for _ in range(940)]
 
     C = multiply.multiply(A, B)
     print(C)
@@ -18,3 +18,4 @@ if __name__ == "__main__":
     input = getsizeof(A) + getsizeof(B)
     print("--- Size of input: %s bytes" % (input))
     print("--- Execution time: %s seconds ---" % (round(time.time() - start_time, 2)))
+
