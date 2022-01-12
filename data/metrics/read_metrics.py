@@ -24,11 +24,11 @@ def humanbytes(B):
     elif TB <= B:
         return float(format(B / TB))
 
-def write_metrics(virt_mem, res_mem, cpu_sec_tot, function, input):
+def write_metrics(virt_mem, res_mem, cpu_sec_tot, function, input_1, input_2):
    cpu = (f"./mem_and_cpu_values/{function}/cpu")
    r_mem = (f"./mem_and_cpu_values/{function}/res_mem")
    v_mem = (f"./mem_and_cpu_values/{function}/virt_mem")
-
+   '''
    with open(os.path.join(v_mem, f"virtual_memory_{input}"), 'w') as myfile:
       for x in virt_mem:
          myfile.write("{}\n".format(round(humanbytes(x), 2)))
@@ -40,11 +40,23 @@ def write_metrics(virt_mem, res_mem, cpu_sec_tot, function, input):
    with open(os.path.join(cpu, f"cpu_total_time_{input}"), 'w') as myfile:
       for x in cpu_sec_tot:
          myfile.write("{}\n".format(round(x, 2)))
+   '''
+   with open(os.path.join(v_mem, f"virtual_memory_{input_1}_{input_2}"), 'w') as myfile:
+      for x in virt_mem:
+         myfile.write("{}\n".format(round(humanbytes(x), 2)))
 
-def write_to_excel(virtual, resident, cpu, function, input, input_bytes, size):
+   with open(os.path.join(r_mem, f"resident_memory_{input_1}_{input_2}"), 'w') as myfile:
+      for x in res_mem:
+         myfile.write("{}\n".format(round(humanbytes(x), 2)))
+
+   with open(os.path.join(cpu, f"cpu_total_time_{input_1}_{input_2}"), 'w') as myfile:
+      for x in cpu_sec_tot:
+         myfile.write("{}\n".format(round(x, 2)))
+
+def write_to_excel(virtual, resident, cpu, function, input_1, input_2, input_bytes, size, exec_time):
    # https://stackoverflow.com/questions/47737220/append-dataframe-to-excel-with-pandas
-   data = [['2048', function, '2', 'matrix', input, input_bytes, 'matrix', size, virtual[0], virtual[1], virtual[2],
-            resident[0], resident[1], resident[2], cpu[0], cpu[1], cpu[2]]]
+   data = [[2048, function, 2, 'list of integers', input_1, input_2, input_bytes, 'integer', size, virtual[0], virtual[1], virtual[2],
+            resident[0], resident[1], resident[2], cpu[0], cpu[1], cpu[2], exec_time]]
    df = pd.DataFrame(data)
    print(df)
    
@@ -136,10 +148,12 @@ def main():
    file_list = os.listdir(dir)
    file_list = sorted(file_list,key=lambda x: int(os.path.splitext(x)[0]))
 
-   function = 'rotate_image'
-   input = '200x200'
-   input_bytes = -1
+   function = 'cholesky_matrix_decomposition'
+   input_1 = '580x580'
+   input_2 = '-'
+   input_bytes = 2691320
    size = len(file_list)
+   exec_time = 15.78
 
    print(f"Batch size: {size}")
    print("\n")
@@ -163,13 +177,13 @@ def main():
                else:
                   continue
 
-   write_metrics(virt_mem, res_mem, cpu_sec_tot, function, input)
+   write_metrics(virt_mem, res_mem, cpu_sec_tot, function, input_1, input_2)
 
    virtual = virtual_memory(virt_mem)
    resident = resident_memory(res_mem)
    cpu = cpu_total_time(cpu_sec_tot)
 
-   write_to_excel(virtual, resident, cpu, function, input, input_bytes, size)
+   write_to_excel(virtual, resident, cpu, function, input_1, input_2, input_bytes, size, exec_time)
 
 
 if __name__ == "__main__":
