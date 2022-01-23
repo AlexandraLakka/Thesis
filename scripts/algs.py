@@ -14,4 +14,4 @@ if __name__ == "__main__":
     print(my_list)
 
     print("--- Size of input: %s" % (getsizeof(my_list)))
-    print("--- Execution time: %s seconds ---" % (round(time.time() - start_time, 2))) 2)))
+    print("--- Execution time: %s seconds ---" % (round(time.time() - start_time, 2)))
