@@ -35,13 +35,16 @@ void write_rule(const char* path, const char* value) {
 //https://doc.dataiku.com/dss/latest/operations/cgroups.html
 #define MEM_FOLDER "/sys/fs/cgroup/memory/"
 #define CPU_FOLDER "/sys/fs/cgroup/cpu/"
-// #define concat(a,b) (a"" b)
+#define DEVICES "/sys/fs/cgroup/devices/"
+#define concat(a,b) (a"" b)
 void limitProcessCreation(std::string my_path) {
   std::string cgroup = CGROUP_FOLDER + my_path + "/";
   std::string memory = MEM_FOLDER + my_path + "/";
   std::string cpu = CPU_FOLDER + my_path + "/";
+  //std::string devices = DEVICES + my_path + "/";
 
   mkdir(cgroup.c_str(), S_IRUSR | S_IWUSR);  // Read & Write
+  //mkdir(devices.c_str(), S_IRUSR | S_IWUSR);  // Read & Write
   //mkdir(memory.c_str(), S_IRUSR | S_IWUSR);  // Read & Write
   //mkdir(cpu.c_str(), S_IRUSR | S_IWUSR);  // Read & Write
   const char* pid  = std::to_string(getpid()).c_str();
@@ -49,10 +52,13 @@ void limitProcessCreation(std::string my_path) {
   std::string pids_max = cgroup + "pids.max";
   std::string notify_on_release = cgroup + "notify_on_release";
   std::string cgroup_procs = cgroup + "cgroup.procs";
+  //std::string cgroup_devices = devices + "devices.allow";
+  //std::cout << cgroup_devices;
 
-  write_rule(pids_max.c_str(), "5"); 
+  write_rule(pids_max.c_str(), "8"); 
   write_rule(notify_on_release.c_str(), "1"); 
   write_rule(cgroup_procs.c_str(), pid);
+  //write_rule(cgroup_devices.c_str(), "c 1:8 r");
 
   //write_rule(concat(memory.c_str(), "memory.limit_in_bytes"), "20M");
 
@@ -142,9 +148,9 @@ int jail(void *args) {
 
   mount("proc", "/proc", "proc", 0, 0); 
   mount("sys", "/sys", "sysfs", 0, 0);
-  mount("dev", "/dev", "tmpfs", 0, 0);
+  //mount("dev", "/dev/shm", "tmpfs", 0, 0);
 
-  printf("Original UTS namespace nodename: ");
+  printf("New UTS namespace nodename: ");
   print_nodename();
   
   auto runnable = lambda(run("/bin/bash"));
@@ -154,7 +160,7 @@ int jail(void *args) {
 
   umount("/proc");
   umount("/sys");
-  umount("/dev");
+  //umount("/dev/shm");
 
   return EXIT_SUCCESS;
 }
