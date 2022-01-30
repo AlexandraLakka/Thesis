@@ -9,3 +9,5 @@ Commands to run when setting up the new root file
 to gain access to Internet
 
 4. Use "ip addr show" to get ip
+
+5. Refer to: https://stackoverflow.com/questions/62473932/atleast-one-invalid-signature-was-encountered, in case update command does not complete successfully
