@@ -1,9 +1,6 @@
 Commands to run when setting up the new root file
 
-1. Run to make root the owner of the directory and its subfolders:
-```bash 
-chown -R root:root /
-``` 
+1. Run "chown -R root:root / " to make root the owner of the directory and its subfolders:
 
 2. To resolve the error "sudo cannot resolve hostname" run : "cat >> /etc/hostname" and "cat >> /etc/hosts" and add the container's host name
 
