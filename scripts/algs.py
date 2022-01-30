@@ -4,7 +4,7 @@ import random
 import time
 from sys import getsizeof
 
-if __name__ == "__main__":
+def main():
     start_http_server(8000)
     start_time = time.time()
 
@@ -15,3 +15,6 @@ if __name__ == "__main__":
 
     print("--- Size of input: %s" % (getsizeof(my_list)))
     print("--- Execution time: %s seconds ---" % (round(time.time() - start_time, 2)))
+
+if __name__ == "__main__":
+    main()
