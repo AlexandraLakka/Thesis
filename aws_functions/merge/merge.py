@@ -8,7 +8,7 @@ if __name__ == "__main__":
     #start_http_server(8000)
     start_time = time.time()
 
-    my_list = [random.randrange(1, 2000000, 1) for i in range(1000000)]
+    my_list = [random.randrange(1, 2000000, 1) for i in range(2000000)]
     my_list = merge_sort(my_list)
     #my_list = quick_sort(my_list)
     print(my_list)
