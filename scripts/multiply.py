@@ -4,7 +4,7 @@ from sys import getsizeof
 import time
 import random
 
-if __name__ == "__main__":
+def main():
     start_http_server(8000)
     start_time = time.time()
     A = [random.sample(range(2000), 940) for _ in range(254)]
@@ -19,3 +19,5 @@ if __name__ == "__main__":
     print("--- Size of input: %s bytes" % (input))
     print("--- Execution time: %s seconds ---" % (round(time.time() - start_time, 2)))
 
+if __name__ == "__main__":
+    main()
