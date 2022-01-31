@@ -152,4 +152,5 @@ def determine_resources(func, input_1, input_2=None):
   
   return mem, cpu
 
-determine_resources('multiply', '432x89', '232x432')
+if __name__ == "__main__":
+  determine_resources('multiply', '432x89', '232x432')
