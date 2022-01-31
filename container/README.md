@@ -1,5 +1,4 @@
-# Thesis
-## Container
+# Container
 
 Source for container.cc: [Container](https://github.com/cesarvr/container)
 
