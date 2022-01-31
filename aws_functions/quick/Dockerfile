@@ -1,9 +1,6 @@
-FROM python:3.8
+FROM public.ecr.aws/lambda/python:3.8
 
-WORKDIR /app
-COPY quick.py .
+COPY quick.py ${LAMBDA_TASK_ROOT}
 
-RUN pip3 install algorithms
-#RUN pip3 install numpy
-
-CMD ["python3", "quick.py"]
+RUN pip3 install algorithms 
+CMD [ "quick.handler" ]
