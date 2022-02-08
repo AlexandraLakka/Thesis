@@ -7,3 +7,4 @@ To execute:
 ```bash
 python3 {script_name}.py
 ```
+The input should also be configured before running the script.
