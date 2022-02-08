@@ -4,11 +4,11 @@ For the collection of the data, the [Prometheus Python client](https://github.co
 
 The `metrics.sh` script listens on the port Prometheus exports its metrics and writes them in files to then later be appropriately handled by the `read_metrics.py`.
 
-The script writes Prometheus' results every 2 seconds, to avoid as much as possible affecting the execution time of our [programs](./scripts).
+The script writes Prometheus' results every 2 seconds, to avoid as much as possible affecting the execution time of our [programs](Thesis/scripts).
 
 The `read_metrics.py` script reads from the files `metrics.sh` creates and writes, for every run of the function, one record in an Excel.
 
-The Excel that was created ([Dataset-VM1.xlsx](./data/metrics/Dataset-VM1.xlsx)) includes the following columns:
+The Excel that was created ([Dataset-VM1.xlsx](Thesis/data/metrics/Dataset-VM1.xlsx)) includes the following columns:
 
 | Feature | Explanation |
 |   ----  |    ----     |
