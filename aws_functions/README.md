@@ -1,6 +1,6 @@
 # AWS Functions
 
-Each of the functions configured to run as an AWS Lambda function. 
+Each of the functions was configured to run as an AWS Lambda function. 
 
 Additional files are the Dockerfiles for creating the AWS Docker images.
 
