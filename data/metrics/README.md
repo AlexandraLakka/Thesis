@@ -6,6 +6,8 @@ The `metrics.sh` script listens on the port Prometheus exports its metrics and w
 
 The script writes Prometheus' results every 2 seconds, to avoid as much as possible affecting the execution time of our [programs](Thesis/scripts).
 
+The metrics collected from Prometheus can be found [here](https://drive.google.com/drive/folders/1-2j7Q1s2jwxbVDzlIKS_oNkwbc-BkQqH?usp=sharing)
+
 The `read_metrics.py` script reads from the files `metrics.sh` creates and writes, for every run of the function, one record in an Excel.
 
 The Excel that was created ([Dataset-VM1.xlsx](Thesis/data/metrics/Dataset-VM1.xlsx)) includes the following columns:
