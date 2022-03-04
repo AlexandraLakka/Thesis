@@ -8,7 +8,7 @@ g++ handler.cpp
 sudo ./a.out {container_name} {container_pid}
 ```
 
-To find the pid of the container execute:
+To find the pid of the container, execute:
 
 ```bash
 ps aux | grep ./container
